@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            font-size: 14px;
+        }
+        
+        .content {
+            width: 1100px;
+            margin: auto;
+        }
+        
+        .restaurant {
+            display: inline-block;
+            width: 800px;
+            height: 600px;
+            border: 1px solid black;
+            position: relative;
+        }
+        
+        .cook,
+        .waiter,
+        .customer {
+            width: 128px;
+        }
+        
+        .cook {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .waiter {
+            position: absolute;
+            top: 0;
+            left: 600px;
+        }
+        
+        .customer {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        
+        .customer .list {
+            position: relative;
+        }
+        
+        .customer .list p:last-child {
+            position: absolute;
+            right: 0;
+            margin: 0;
+        }
+        
+        .total-cash {
+            width: 128px;
+            position: absolute;
+            bottom: 0;
+            left: calc(50% - 64px);
+            text-align: center;
+        }
+        
+        .rest-time {
+            margin: 0;
+        }
+        
+        p {
+            display: inline;
+        }
+        
+        .cuslist {
+            display: inline-block;
+            width: 200px;
+            height: 600px;
+            border: 1px solid black;
+        }
+        
+        .cuslist img {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="restaurant">
+            <div class="cook">
+                <img src="./img/cook.png" alt="">
+                <div class='state'>状态</div>
+                <div> 剩余时间:
+                    <p class="rest-time"></p>
+                </div>
+                <div class="to-do-list">待做列表:
+                </div>
+            </div>
+            <div class="waiter"><img src="./img/waiter.png" alt=""></div>
+            <div class="customer">
+
+                <div class='state'>状态</div>
+                <div class="list"> </div>
+            </div>
+            <div class='total-cash'>
+                <p>现金</p>
+                <div>321</div>
+            </div>
+
+        </div>
+        <div class="cuslist">
+
+        </div>
+    </div>
+
+    <script src="./ES6/utils.js"></script>
+    <script src="./ES6/employee.js"></script>
+    <script src="./ES6/restaurant.js"></script>
+    <script src="./ES6/cooker.js"></script>
+    <script src="./ES6/waiter.js"></script>
+    <script src="./ES6/customer.js"></script>
+    <script src="./ES6/course.js"></script>
+    <script src="./ES6/cusList.js"></script>
+    <script src="./ES6/menu.js"></script>
+    <script src="./ES6/factory.js"></script>
+    <script src="./ES6/cartoon.js"></script>
+
+    <script>
+        var totalCash = document.querySelector('.total-cash div');
+        var cookState = document.querySelector('.cook .state');
+        var cookRestTime = document.querySelector('.cook .rest-time');
+        var cookToDoList = document.querySelector('.cook .to-do-list');
+        var cusState = document.querySelector('.customer .state')
+        var List = document.querySelector('.list')
+        var Waiterinstance = document.querySelector('.waiter')
+        var CuslList = document.querySelector('.cuslist')
+        var customer = document.querySelector('.customer')
+
+        var ifeRestaurant = Factory('restaurant', {
+            name: "饕餮食馆",
+            cash: 100000,
+            seats: 1,
+            staff: []
+        });
+
+        let waiter = Factory('waiter', {
+            name: "张三",
+            salary: 6000
+        });
+        let cook = Factory('cook', {
+            name: "李四",
+            salary: 10000
+        });
+
+        totalCash.innerHTML = ifeRestaurant.cash
+
+        ifeRestaurant.hire(waiter);
+        ifeRestaurant.hire(cook);
+        cookState.innerHTML = cook.state;
+        customList.joinIn(new Customer());
+        customList.joinIn(new Customer());
+        customList.joinIn(new Customer());
+        customList.joinIn(new Customer());
+
+        for (let i in customList.list) {
+            let img = document.createElement('img');
+            img.src = './img/customer.png';
+            CuslList.appendChild(img)
+        }
+        console.log(CuslList.childNodes);
+
+        customList.stepIn();
+    </script>
+</body>
+
+</html>

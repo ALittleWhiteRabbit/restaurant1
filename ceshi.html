@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box1 {
+            margin: 0;
+            padding: 5px;
+            height: 200px;
+            background-color: #ddd;
+            position: relative;
+        }
+        
+        button {
+            margin: 5px;
+        }
+        
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+        <button>运动到200</button>
+        <button>运动到400</button>
+        <div class="box2"></div>
+    </div>
+
+
+    <script>
+        var btnArr = document.getElementsByTagName("button");
+        var box2 = document.getElementsByClassName("box2")[0];
+        var timer = null;
+
+        //绑定事件
+        btnArr[0].onclick = function() {
+            animate(200);
+        };
+
+        btnArr[1].onclick = function() {
+            animate(400);
+        };
+        console.log(box2.style.left);
+
+
+        function animate(target) {
+            timer = setInterval(function() {
+                //盒子自身的位置+步长
+
+                box2.style.left = box2.offsetLeft + 10 + "px";
+                //如果停止盒子？清除定时器
+                if (box2.offsetLeft === target) {
+                    clearInterval(timer);
+                }
+            }, 30);
+        }
+    </script>
+</body>
+
+</html>
+———————————————— 版权声明：本文为CSDN博主「哒玲」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。 原文链接：https://blog.csdn.net/zl13015214442/article/details/88067034
