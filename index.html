@@ -84,12 +84,20 @@
         .cuslist img {
             display: block;
         }
+        
+        button {
+            position: absolute;
+            top: 80%;
+            left: 45%;
+        }
     </style>
 </head>
 
 <body>
     <div class="content">
+
         <div class="restaurant">
+            <button>开始营业</button>
             <div class="cook">
                 <img src="./img/cook.png" alt="">
                 <div class='state'>状态</div>
@@ -138,7 +146,7 @@
         var Waiterinstance = document.querySelector('.waiter')
         var CuslList = document.querySelector('.cuslist')
         var customer = document.querySelector('.customer')
-
+        var button = document.querySelector('button')
         var ifeRestaurant = Factory('restaurant', {
             name: "饕餮食馆",
             cash: 100000,
@@ -171,8 +179,10 @@
             CuslList.appendChild(img)
         }
         console.log(CuslList.childNodes);
-
-        customList.stepIn();
+        button.onclick = function() {
+            customList.stepIn();
+            button.disabled = true
+        }
     </script>
 </body>
 
